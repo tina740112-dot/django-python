@@ -5,7 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View History Temperature</title>
 </head>
+
 <body>
-  
+  <h1>History Temperature</h1>
+  <table border="1">
+    <tr>
+      <th>Sensor ID</th>
+      <th>Temperature</th>
+      <th>Humidity</th>
+      <th>Timestamp</th>
+    </tr>
+    {% for temp in temperatures %}
+    <tr>
+      <td>{{ temp.myid }}</td>
+      <td>{{ temp.sensor_id }}</td>
+      <td>{{ temp.temperature }}</td>
+      <td>{{ temp.humidity }}</td>
+      <td>{{ temp.timestamp }}</td>
+    </tr>
+    {% endfor %}
+  </table>
 </body>
 </html>
