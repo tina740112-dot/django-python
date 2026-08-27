@@ -1,5 +1,5 @@
 """
-URL configuration for ch3_12 project.
+URL configuration for homework4 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -16,15 +16,10 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
 from myapp import views
+from django.urls import path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('search_list/',views.search_list,name='search_list'),
-    path('search_name/',views.search_name,name='search_name'),
-    path('index/',views.index,name='index'),
-    path('post/',views.post,name='post'),
-    path('edit/<int:id>/',views.edit,name='edit'),
-    path('delete/<int:id>/',views.delete,name='delete'),
+    path('view temperature/', views.view_history_temperature)
 ]
