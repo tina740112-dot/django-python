@@ -1,3 +1,4 @@
+import site
 from urllib import request
 
 from django.shortcuts import render
@@ -35,13 +36,51 @@ def search_name(request):
   return render(request,'search_name.html',locals())#將所有本地變數傳給search_name.html
 
 def index(request):
-  #orm語法
-    resultlist=Students.objects.all()
+    if 'site_search' in request.GET:
+        site_search = request.GET['site_search']  # 取得使用者輸入的姓名
+        site_search = site_search.strip()  # 呼叫 strip() 方法去除前後空白
+        print(f' site_search: {site_search}')  # debugging line to check the value of site_search
+        keyword=site_search.split()#將搜尋關鍵字拆分成多個詞 
+        print(f'keyword: {keyword}')  # debugging line to check the split keyword
+        #多個關鍵字搜尋, 搜尋cname, csex, cemail, cphone, caddr欄位 其中之一符合即可
+        from django.db.models import Q
+        query = Q()
+        for word in keyword:
+          print(f'keyword: {keyword}')  # debugging line to check each keyword
+          query |=Q(cname__icontains=word)
+          query |=Q(csex__icontains=word)
+          query |=Q(cemail__icontains=word)
+          query |=Q(cphone__icontains=word)
+          query |=Q(caddr__icontains=word)
+        resultlist=Students.objects.filter(query).order_by('-cid')#取得學生資料
+    else:#orm語法
+        # resultlist=Students.objects.filter().order_by('-cid')
+          
+        #orm語法
+        resultlist=Students.objects.all()
     #for data in resultlist:
     #    print(model_to_dict(data))#將資料轉為字典格式並印出
     data_count=resultlist.count()#計算資料筆數
     print(data_count)
     #return HttpResponse("hello")
+    
+    #分頁設定，每頁顯示2筆資料
+    from django.core.paginator import Paginator
+    paginator = Paginator(resultlist, 2) # Show 2 contacts per page.
+    page_number = request.GET.get('page')#取得使用者輸入的頁碼(當前頁碼)
+    page_obj = paginator.get_page(page_number)#取得當前頁碼的資料
+    
+    #說明
+    #page_obj會包含當前頁碼的資料, 以及分頁資訊，例如
+    #page_obj.has_previous() #是否有上一頁
+    #page_obj.has_next() #是否有下一頁  
+    #page_obj.number #當前頁碼
+    #page_obj.paginator.num_pages #總頁數
+    #page_obj.paginator.page_range #頁碼範圍
+    #page_obj.object_list #當前頁碼的資料列表
+    #page_obj.previous_page_number() #上一頁的頁碼
+    #page_obj.next_page_number() #下一頁的頁碼
+    
     return render(request,'index.html',locals())#將所有本地變數傳給index.html
 from django.shortcuts import redirect
 def post(request):

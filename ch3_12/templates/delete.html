@@ -18,6 +18,12 @@
       margin-bottom: 40px;
   }
 </style>
+<script>
+  //javascript code can be added here if needed
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this student data?");
+  }
+</script>
 {% endblock %}
 {% block content %}
 <div>
@@ -71,4 +77,13 @@
       </table>
     </form>
 </div>
+<script>
+  // add javascript for delete confirmation
+  //定義確認刪除的函式
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this student data?");
+  }
+  //when user click the submit button, call the confirmDelete function
+  document.getElementById('submit').onclick = confirmDelete;
+</script>
 {% endblock %}
