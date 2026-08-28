@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+*.sqlite3
+.env
+.venv/
+venv/
+.vscode/
+ch3_12/local_settings.py
+DJANGO連到mysql的前置作業.docx

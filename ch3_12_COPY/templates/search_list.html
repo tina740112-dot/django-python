@@ -1,0 +1,16 @@
+{% extends "best.html" %}
+
+{% block title %}<title>學生搜尋結果</title>{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between gap-3 mb-4"><div><h1 class="h3 text-primary mb-1">搜尋結果</h1><p class="text-secondary mb-0">符合「{{ cname }}」的學生資料</p></div><a class="btn btn-outline-primary" href="{% url 'search_name' %}"><i class="bi bi-search me-1"></i>重新搜尋</a></div>
+{% if errormessage %}
+  <div class="alert alert-info mb-0" role="status"><i class="bi bi-info-circle me-2"></i>{{ errormessage }}</div>
+{% else %}
+  <div class="list-group">
+  {% for data in datas %}
+    <div class="list-group-item p-3 p-md-4"><div class="d-flex gap-3"><span class="student-avatar">{{ data.cname|slice:":1" }}</span><div class="flex-grow-1"><div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2"><h2 class="h5 mb-0">{{ data.cname }}</h2><span class="badge text-bg-light border">學號 {{ data.cid }}</span></div><div class="row g-2 small text-secondary"><div class="col-md-6"><i class="bi bi-calendar3 me-2"></i>{{ data.cbirthday|date:"Y-m-d" }}</div><div class="col-md-6"><i class="bi bi-envelope me-2"></i>{{ data.cemail }}</div><div class="col-md-6"><i class="bi bi-telephone me-2"></i>{{ data.cphone }}</div><div class="col-md-6"><i class="bi bi-geo-alt me-2"></i>{{ data.caddr }}</div></div></div></div></div>
+  {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}

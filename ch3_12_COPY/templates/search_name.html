@@ -1,0 +1,15 @@
+{% extends "best.html" %}
+
+{% block title %}<title>搜尋學生資料</title>{% endblock %}
+
+{% block content %}
+<div class="form-wrap py-md-4">
+  <div class="text-center mb-4"><span class="d-inline-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle mb-3 search-icon"><i class="bi bi-person-search fs-3"></i></span><h1 class="h3 text-primary">搜尋學生資料</h1><p class="text-secondary">輸入姓名以尋找學生。</p></div>
+  <form class="input-group input-group-lg" action="{% url 'search_list' %}" method="get">
+    <label class="visually-hidden" for="cname">學生姓名</label>
+    <span class="input-group-text bg-white"><i class="bi bi-search text-secondary"></i></span>
+    <input class="form-control" type="search" id="cname" name="cname" placeholder="輸入學生姓名" required autofocus>
+    <button class="btn btn-primary" type="submit">搜尋</button>
+  </form>
+</div>
+{% endblock %}

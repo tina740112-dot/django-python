@@ -1,0 +1,21 @@
+{% extends 'best.html' %}
+{% block title %}<title>編輯學生資料</title>{% endblock %}
+{% block content %}
+<div class="form-wrap">
+  <div class="mb-4">
+    <a class="link-secondary text-decoration-none" href="{% url 'index' %}"><i class="bi bi-arrow-left me-1"></i>返回學生列表</a>
+    <h1 class="h3 text-primary mt-3 mb-1">編輯學生資料</h1>
+    <p class="text-secondary mb-0">學號 {{ obj_data.cid }} · {{ obj_data.cname }}</p>
+  </div>
+  <form action="{% url 'edit' obj_data.cid %}" method="post" class="row g-3">
+    {% csrf_token %}
+    <div class="col-md-6"><label class="form-label" for="cname">姓名</label><input class="form-control" type="text" id="cname" name="cname" required value="{{ obj_data.cname }}"></div>
+    <fieldset class="col-md-6"><legend class="form-label">性別</legend><div class="d-flex gap-4 pt-2"><div class="form-check"><input class="form-check-input" type="radio" id="male" name="csex" value="M" {% if obj_data.csex == "M" %}checked{% endif %}><label class="form-check-label" for="male">男</label></div><div class="form-check"><input class="form-check-input" type="radio" id="female" name="csex" value="F" {% if obj_data.csex == "F" %}checked{% endif %}><label class="form-check-label" for="female">女</label></div></div></fieldset>
+    <div class="col-md-6"><label class="form-label" for="cbirthday">生日</label><input class="form-control" type="date" id="cbirthday" name="cbirthday" required value="{{ obj_data.cbirthday|date:'Y-m-d' }}"></div>
+    <div class="col-md-6"><label class="form-label" for="cemail">電子郵件</label><input class="form-control" type="email" id="cemail" name="cemail" required value="{{ obj_data.cemail }}"></div>
+    <div class="col-md-6"><label class="form-label" for="cphone">電話</label><input class="form-control" type="tel" id="cphone" name="cphone" required value="{{ obj_data.cphone }}"></div>
+    <div class="col-md-6"><label class="form-label" for="caddr">地址</label><input class="form-control" type="text" id="caddr" name="caddr" required value="{{ obj_data.caddr }}"></div>
+    <div class="col-12 d-flex justify-content-end gap-2 pt-3 border-top"><a class="btn btn-outline-secondary" href="{% url 'index' %}">取消</a><button class="btn btn-primary" type="submit"><i class="bi bi-check-lg me-1"></i>儲存變更</button></div>
+  </form>
+</div>
+{% endblock %}

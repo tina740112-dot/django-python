@@ -1,0 +1,52 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eaf4ff 0, #f8f9fa 280px);
+  font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  letter-spacing: 0;
+}
+
+.page-content {
+  overflow: hidden;
+}
+
+.search-bar {
+  width: min(100%, 430px);
+}
+
+.form-wrap {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.student-avatar {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  color: var(--bs-primary);
+  background: var(--bs-primary-bg-subtle);
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.search-icon {
+  width: 64px;
+  height: 64px;
+}
+
+@media (max-width: 575.98px) {
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  .navbar .btn {
+    width: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .navbar .btn i {
+    margin-right: 1rem !important;
+  }
+}
