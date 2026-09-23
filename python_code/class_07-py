@@ -1,0 +1,26 @@
+class Animal:
+    def __init__(self, name):#初始化方法，建構方法/建構子/constructor
+        self.name = name#屬性，動物名稱
+    def fly(self):#一般方法
+        print(f"{self.name} is flying")
+        
+class Bird(Animal):#繼承自animal類別
+    def __init__(self, name, color):#初始化方法，建構方法/建構子/constructor
+        self.name = 'red'+name
+    def sing(self):#一般方法
+        print(f"{self.name} is singing")
+        
+class Bird2(Animal):#繼承自animal類別
+    def mymethod(self):#一般方法
+        print("hello world")
+        
+print("...........1...........")
+p1=Bird('sparrow')
+print(p1.name)
+p1.fly()
+p1.sing()
+print("...........2...........")
+p2 = Bird2('robin')
+print(p2.name)
+p2.fly()
+p2.mymethod()
